@@ -13,8 +13,7 @@ namespace Catalogue.Controllers
 
         public ActionResult Index()
         {
-            var model = _dbContext.Records.ToList();
-            return View(model);
+            return View();
         }
 
         public ActionResult About()

@@ -15,10 +15,31 @@ namespace Catalogue.Controllers
         private CatalogueContext db = new CatalogueContext();
 
         // GET: Record
-        public ActionResult Index()
+        public ActionResult Index(
+            string searchTerm = null,
+            string title = null,
+            string author = null,
+            string desc = null)
         {
-            return View(db.Records.ToList());
+            if (searchTerm == null || searchTerm.Equals(""))
+            {
+                return View(db.Records.ToList());
+            }
+            else
+            {
+                searchTerm = searchTerm.Trim();
+                var model =
+                    db.Records
+                      .Where(r => (((title != null) && (-1 != r.Title.IndexOf(searchTerm)))
+                                    || ((author != null) && (-1 != r.Author.IndexOf(searchTerm)))
+                                    || ((desc != null) && (-1 != r.Description.IndexOf(searchTerm)))
+                                    ))
+                      .Select(r => r);
+                return View(model);
+            }
+
         }
+
 
         // GET: Record/Details/5
         public ActionResult Details(int? id)

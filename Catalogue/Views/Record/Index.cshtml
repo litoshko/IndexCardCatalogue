@@ -6,6 +6,18 @@
 
 <h2>Index</h2>
 
+
+<div>
+        <form method="get">
+
+            <input type="checkbox" name="title" value="true" /> Search by Title <br />
+            <input type="checkbox" name="author" value="true" /> Search by Author <br />
+            <input type="checkbox" name="desc" value="true" /> Search by Description <br />
+            <input type="search" name="searchTerm" />
+            <input type="submit" value="Search" />
+        </form>
+    </div>
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -23,23 +35,24 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Index", "Review", new { id=item.Id }, null) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Index", "Review", new { id = item.Id }, null) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>

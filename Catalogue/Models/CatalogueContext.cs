@@ -6,13 +6,13 @@ using System.Web;
 
 namespace Catalogue.Models
 {
-    public class CatalogueContext : DbContext
-    {
-        public CatalogueContext() : base("name = DefaultConnection")
-        {
+    //public class CatalogueContext : DbContext
+    //{
+    //    public CatalogueContext() : base("name = DefaultConnection")
+    //    {
 
-        }
-        public DbSet<Record> Records { get; set; }
-        public DbSet<Review> Reviews { get; set; }
-    }
+    //    }
+    //    public DbSet<Record> Records { get; set; }
+    //    public DbSet<Review> Reviews { get; set; }
+    //}
 }

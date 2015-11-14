@@ -25,6 +25,9 @@ namespace Catalogue.Models
         {
         }
 
+        public DbSet<Record> Records { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

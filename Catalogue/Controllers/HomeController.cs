@@ -9,7 +9,7 @@ namespace Catalogue.Controllers
 {
     public class HomeController : Controller
     {
-        CatalogueContext _dbContext = new CatalogueContext();
+        ApplicationDbContext _dbContext = new ApplicationDbContext();
 
         public ActionResult Index()
         {

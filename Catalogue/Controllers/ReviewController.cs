@@ -10,11 +10,13 @@ using Catalogue.Models;
 
 namespace Catalogue.Controllers
 {
+    [Authorize]
     public class ReviewController : Controller
     {
-        private CatalogueContext db = new CatalogueContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Review/Index/2
+        [AllowAnonymous]
         public ActionResult Index([Bind(Prefix = "id")]int? recordId)
         {
             if (recordId == null)
@@ -45,6 +47,7 @@ namespace Catalogue.Controllers
         }
 
         // GET: Review/Create
+        [AllowAnonymous]
         public ActionResult Create(int recordId)
         {
             return View();
@@ -55,6 +58,7 @@ namespace Catalogue.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult Create(Review review)
         {
             if (ModelState.IsValid)

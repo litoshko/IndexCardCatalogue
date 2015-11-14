@@ -11,7 +11,7 @@ namespace Catalogue.Models
         public string Title { get; set; }
         public string Author { get; set; }
         public string Description { get; set; }
-        //public UserProfile Owner { get; set; }
+        public string OwnerName { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
     }
 }

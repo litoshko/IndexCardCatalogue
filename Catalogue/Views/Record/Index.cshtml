@@ -13,6 +13,7 @@
             <input type="checkbox" name="title" value="true" /> Search by Title <br />
             <input type="checkbox" name="author" value="true" /> Search by Author <br />
             <input type="checkbox" name="desc" value="true" /> Search by Description <br />
+            <input type="checkbox" name="owner" value="true" /> Search by Record owner name <br />
             <input type="search" name="searchTerm" />
             <input type="submit" value="Search" />
         </form>
@@ -32,6 +33,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerName)
+        </th>
         <th></th>
     </tr>
 
@@ -46,6 +50,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OwnerName)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

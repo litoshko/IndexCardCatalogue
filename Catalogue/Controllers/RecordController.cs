@@ -10,16 +10,19 @@ using Catalogue.Models;
 
 namespace Catalogue.Controllers
 {
+    [Authorize]
     public class RecordController : Controller
     {
-        private CatalogueContext db = new CatalogueContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Record
+        [AllowAnonymous]
         public ActionResult Index(
             string searchTerm = null,
             string title = null,
             string author = null,
-            string desc = null)
+            string desc = null,
+            string owner = null)
         {
             if (searchTerm == null || searchTerm.Equals(""))
             {
@@ -33,6 +36,7 @@ namespace Catalogue.Controllers
                       .Where(r => (((title != null) && (-1 != r.Title.IndexOf(searchTerm)))
                                     || ((author != null) && (-1 != r.Author.IndexOf(searchTerm)))
                                     || ((desc != null) && (-1 != r.Description.IndexOf(searchTerm)))
+                                    || ((owner != null) && (-1 != r.OwnerName.IndexOf(searchTerm)))
                                     ))
                       .Select(r => r);
                 return View(model);
@@ -71,6 +75,7 @@ namespace Catalogue.Controllers
         {
             if (ModelState.IsValid)
             {
+                record.OwnerName = User.Identity.Name;
                 db.Records.Add(record);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -103,6 +108,7 @@ namespace Catalogue.Controllers
         {
             if (ModelState.IsValid)
             {
+                record.OwnerName = User.Identity.Name;
                 db.Entry(record).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

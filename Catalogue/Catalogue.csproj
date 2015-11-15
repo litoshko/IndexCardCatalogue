@@ -181,6 +181,7 @@
     <Compile Include="Controllers\RecordController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Filters\ErrorHandle.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

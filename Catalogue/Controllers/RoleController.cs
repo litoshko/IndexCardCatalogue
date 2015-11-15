@@ -1,4 +1,5 @@
-﻿using Catalogue.Models;
+﻿using Catalogue.Filters;
+using Catalogue.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace Catalogue.Controllers
 {
+    [CustomErrorHandle]
     [Authorize(Roles = ADMIN_ROLE_NAME)]
     public class RoleController : Controller
     {

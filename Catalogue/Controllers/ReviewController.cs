@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Catalogue.Models;
+using Catalogue.Filters;
 
 namespace Catalogue.Controllers
 {
+    [CustomErrorHandle]
     [Authorize]
     public class ReviewController : Controller
     {

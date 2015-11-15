@@ -25,6 +25,11 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Records", "Index", "Record")</li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        //here blocks that you want to show to users with Admin role
+                        <li>@Html.ActionLink("Administration", "Administration", "Home")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

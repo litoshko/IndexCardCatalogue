@@ -29,6 +29,14 @@ namespace Catalogue.Controllers
             return View();
         }
 
+        [Authorize(Roles = RoleController.ADMIN_ROLE_NAME)]
+        public ActionResult Administration()
+        {
+            ViewBag.Message = "Your administraion page.";
+
+            return View();
+        }
+
         public ActionResult Error()
         {
             return View();

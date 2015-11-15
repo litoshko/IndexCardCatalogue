@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = "Administation";
+}
+
+<h2>Administation</h2>
+
+<h3>Manage users:</h3>
+@Html.ActionLink("Go to users list", "Index", "Role")
+
+<h3>View error log:</h3>
+@Html.ActionLink("Go to elmah error log", "Index", "elmah")

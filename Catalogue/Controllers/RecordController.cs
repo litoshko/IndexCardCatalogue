@@ -44,7 +44,6 @@ namespace Catalogue.Controllers
 
         }
 
-
         // GET: Record/Details/5
         public ActionResult Details(int? id)
         {

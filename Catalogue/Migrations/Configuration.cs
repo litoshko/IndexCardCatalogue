@@ -19,6 +19,21 @@ namespace Catalogue.Migrations
 
         protected override void Seed(Catalogue.Models.ApplicationDbContext context)
         {
+            if (!context.Roles.Any(r => r.Name == "Admin"))
+            {
+                context.Roles.Add(new IdentityRole("Admin"));
+            }
+            if (!context.Users.Any(u => u.UserName == "admin@x.ua"))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser { UserName = "admin@x.ua" };
+
+                manager.Create(user, "password");
+
+                manager.AddToRole(user.Id, "Admin");
+            }
+
             if (!context.Users.Any(u => u.UserName == "x@x.ua"))
             {
                 var store = new UserStore<ApplicationUser>(context);
@@ -26,6 +41,8 @@ namespace Catalogue.Migrations
                 var user = new ApplicationUser { UserName = "x@x.ua" };
 
                 manager.Create(user, "password");
+
+                manager.AddToRole(user.Id, "Admin");
             }
             context.Records.AddOrUpdate(r => r.Title,
                 new Record

@@ -1,4 +1,5 @@
-﻿using Catalogue.Models;
+﻿using Catalogue.Filters;
+using Catalogue.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,6 @@ namespace Catalogue.Controllers
 {
     public class HomeController : Controller
     {
-        ApplicationDbContext _dbContext = new ApplicationDbContext();
-
         public ActionResult Index()
         {
             return View();
@@ -30,13 +29,9 @@ namespace Catalogue.Controllers
             return View();
         }
 
-        protected override void Dispose(bool disposing)
+        public ActionResult Error()
         {
-            if (_dbContext != null)
-            {
-                _dbContext.Dispose();
-            }
-            base.Dispose(disposing);
+            return View();
         }
     }
 }

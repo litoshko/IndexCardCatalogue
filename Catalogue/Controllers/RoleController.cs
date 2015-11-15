@@ -88,7 +88,6 @@ namespace Catalogue.Controllers
                 var manager = new UserManager<ApplicationUser>(store);
 
                 manager.AddToRole(user.Id, ADMIN_ROLE_NAME);
-
                 return RedirectToAction("Index");
             }
             catch

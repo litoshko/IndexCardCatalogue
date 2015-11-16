@@ -11,6 +11,9 @@ using Catalogue.Filters;
 
 namespace Catalogue.Controllers
 {
+    /// <summary>
+    /// Controller for performing CRUDL actions for Reviws model.
+    /// </summary>
     [CustomErrorHandle]
     [Authorize]
     public class ReviewController : Controller
@@ -18,6 +21,11 @@ namespace Catalogue.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Review/Index/2
+        /// <summary>
+        /// Method to get all information about specified record.
+        /// </summary>
+        /// <param name="recordId">Id for Record to return.</param>
+        /// <returns>Record for specified id.</returns>
         [AllowAnonymous]
         public ActionResult Index([Bind(Prefix = "id")]int? recordId)
         {
@@ -34,6 +42,11 @@ namespace Catalogue.Controllers
         }
 
         // GET: Review/Details/5
+        /// <summary>
+        /// Allows getting detailed information about a given review.
+        /// </summary>
+        /// <param name="id">Id of review.</param>
+        /// <returns>ActionResult with review model.</returns>
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -49,6 +62,11 @@ namespace Catalogue.Controllers
         }
 
         // GET: Review/Create
+        /// <summary>
+        /// Returns Create review View.
+        /// </summary>
+        /// <param name="recordId">Id of record to add review for.</param>
+        /// <returns>Returns Create review View.</returns>
         [AllowAnonymous]
         public ActionResult Create(int recordId)
         {
@@ -58,6 +76,12 @@ namespace Catalogue.Controllers
         // POST: Review/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Saves reviw model to database.
+        /// </summary>
+        /// <param name="review">Model from view to add to database.</param>
+        /// <returns>Redirect to record details on success
+        /// and create review view on failure (with model validation errors)</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
@@ -74,6 +98,11 @@ namespace Catalogue.Controllers
         }
 
         // GET: Review/Edit/5
+        /// <summary>
+        /// Edit review.
+        /// </summary>
+        /// <param name="id">Specifies review to edit.</param>
+        /// <returns>Edit review View.</returns>
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -91,6 +120,12 @@ namespace Catalogue.Controllers
         // POST: Review/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Saves edited review.
+        /// </summary>
+        /// <param name="review">Review model to save.</param>
+        /// <returns>Redirect to record details on success
+        /// and create record view on failure (with model validation errors)</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Rating,Comment,RecordId")] Review review)
@@ -105,6 +140,11 @@ namespace Catalogue.Controllers
         }
 
         // GET: Review/Delete/5
+        /// <summary>
+        /// Delete review.
+        /// </summary>
+        /// <param name="id">Specifies review to delete.</param>
+        /// <returns>Delete review View.</returns>
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -120,6 +160,11 @@ namespace Catalogue.Controllers
         }
 
         // POST: Review/Delete/5
+        /// <summary>
+        /// Deletes chosen review by id.
+        /// </summary>
+        /// <param name="review">Id of Review to be deleted.</param>
+        /// <returns>Redirect to record details.</returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

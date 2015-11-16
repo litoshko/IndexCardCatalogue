@@ -58,7 +58,13 @@ namespace Catalogue.Models
             Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
         }
 
+        /// <summary>
+        /// Property is used for aceess to database table Records.
+        /// </summary>
         public DbSet<Record> Records { get; set; }
+        /// <summary>
+        /// Property is used for aceess to database table Revies.
+        /// </summary>
         public DbSet<Review> Reviews { get; set; }
 
         public static ApplicationDbContext Create()

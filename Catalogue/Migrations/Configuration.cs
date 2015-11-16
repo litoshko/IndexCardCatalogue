@@ -17,10 +17,16 @@ namespace Catalogue.Migrations
             ContextKey = "Catalogue.Models.ApplicationDbContext";
         }
 
+        /// <summary>
+        /// Seed method for EF migration. Used for initial seed of application database.
+        /// </summary>
+        /// <param name="context">Database context to seed into.</param>
         protected override void Seed(Catalogue.Models.ApplicationDbContext context)
         {
+            // Seed Identity with users.
             SeedIdentity(context);
 
+            // Add Records and Reviews to database.
             context.Records.AddOrUpdate(r => r.Title,
                 new Record
                 {
@@ -49,12 +55,20 @@ namespace Catalogue.Migrations
                 });
         }
 
+        /// <summary>
+        /// Adds two users to database. Makes one of them Admin.
+        /// </summary>
+        /// <param name="context">DbContext to add users to.</param>
         private static void SeedIdentity(ApplicationDbContext context)
         {
+            // Create role Admin if it does not exist.
             if (!context.Roles.Any(r => r.Name == "Admin"))
             {
                 context.Roles.Add(new IdentityRole("Admin"));
             }
+
+            // Add user to database if user with given username does not exist.
+            // Add role Admin for freshly created user
             if (!context.Users.Any(u => u.UserName == "admin@x.ua"))
             {
                 var store = new UserStore<ApplicationUser>(context);
@@ -66,6 +80,7 @@ namespace Catalogue.Migrations
                 manager.AddToRole(user.Id, "Admin");
             }
 
+            // Add user to database if user with given username does not exist.
             if (!context.Users.Any(u => u.UserName == "x@x.ua"))
             {
                 var store = new UserStore<ApplicationUser>(context);

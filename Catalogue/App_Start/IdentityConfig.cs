@@ -14,7 +14,7 @@ using Catalogue.Models;
 
 namespace Catalogue
 {
-    // Seed database with admin user with Admin role
+    // Seed database
     public class ApplicationDbInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
@@ -22,9 +22,7 @@ namespace Catalogue
             base.Seed(context);
         }
     }
-
-
-
+    
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)

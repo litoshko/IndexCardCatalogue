@@ -5,6 +5,9 @@ using System.Web;
 
 namespace Catalogue.Models
 {
+    /// <summary>
+    /// View model which is used to display user roles.
+    /// </summary>
     public class UserRoleViewModel
     {
         public string UserName { get; set; }

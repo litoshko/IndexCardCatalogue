@@ -13,37 +13,14 @@ namespace Catalogue.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
             ContextKey = "Catalogue.Models.ApplicationDbContext";
         }
 
         protected override void Seed(Catalogue.Models.ApplicationDbContext context)
         {
-            if (!context.Roles.Any(r => r.Name == "Admin"))
-            {
-                context.Roles.Add(new IdentityRole("Admin"));
-            }
-            if (!context.Users.Any(u => u.UserName == "admin@x.ua"))
-            {
-                var store = new UserStore<ApplicationUser>(context);
-                var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser { UserName = "admin@x.ua" };
+            SeedIdentity(context);
 
-                manager.Create(user, "password");
-
-                manager.AddToRole(user.Id, "Admin");
-            }
-
-            if (!context.Users.Any(u => u.UserName == "x@x.ua"))
-            {
-                var store = new UserStore<ApplicationUser>(context);
-                var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser { UserName = "x@x.ua" };
-
-                manager.Create(user, "password");
-
-                manager.AddToRole(user.Id, "Admin");
-            }
             context.Records.AddOrUpdate(r => r.Title,
                 new Record
                 {
@@ -70,6 +47,33 @@ namespace Catalogue.Migrations
                         new Review { Rating = 9, Comment = "Great book for a start!" }
                     }
                 });
+        }
+
+        private static void SeedIdentity(ApplicationDbContext context)
+        {
+            if (!context.Roles.Any(r => r.Name == "Admin"))
+            {
+                context.Roles.Add(new IdentityRole("Admin"));
+            }
+            if (!context.Users.Any(u => u.UserName == "admin@x.ua"))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser { UserName = "admin@x.ua" };
+
+                manager.Create(user, "password");
+
+                manager.AddToRole(user.Id, "Admin");
+            }
+
+            if (!context.Users.Any(u => u.UserName == "x@x.ua"))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser { UserName = "x@x.ua" };
+
+                manager.Create(user, "password");
+            }
         }
     }
 }

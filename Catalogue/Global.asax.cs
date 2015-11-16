@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Catalogue.Migrations;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,6 +14,10 @@ namespace Catalogue
     {
         protected void Application_Start()
         {
+            // Run initial migration on application start.
+            var migrator = new DbMigrator(new Configuration());
+            migrator.Update();
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
